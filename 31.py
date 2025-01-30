@@ -4,7 +4,7 @@ num_1 = input('введіть перше число: ')
 num_2 = input('введіть друге число: ')
 operation = input('введіть дію: ')
 
-if  num_1.isnumeric() and num_2.isnumeric():
+if  num_1.isnumeric() and num_2.isnumeric(): # перевірка на те, чи є числами
     num_1 = int(num_1)
     num_2 = int(num_2)
     if num_2 >= 0: # перевірка на знак 2-го числа, щоб красиво прописати дію: з дужками або без
