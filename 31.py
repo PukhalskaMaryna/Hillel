@@ -45,7 +45,7 @@ if  test_for_num_1 and test_for_num_2 and (operation == '+' or operation == '-' 
         elif operation == '/': # перевірка 2-го числа на 0 не потрібна, бо у нас вище точно відомо, що друге число від'ємне
             print(num_1,'/',num_2,') =',num_1/num_2)
 else:
-    if  not(num_1.isnumeric() and num_2.isnumeric()):
+    if  not (test_for_num_1 and test_for_num_2):
         print('помилка: ви ввели не число')
     else:
         print('помилка: ви ввели невірну дію')
