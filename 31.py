@@ -1,12 +1,26 @@
 # якщо згадаєте, можете, будь ласка, на наступному уроці показати як робити масову заміну,
 # наприклад по всьому коду замінити щось на щось
 # і чи є якісь "гарячі" клавіші, якими зручно користуватись
+# не сваріться сильно, бо пішла гуглити обробник помилок, так як isdigit() не захоплює від'ємні числа
 num_1 = input('введіть перше число: ')
 num_2 = input('введіть друге число: ')
+test_for_num_1 = True
+test_for_num_2 = True
 operation = input('введіть дію: ')
 
+try:
+     float(num_1)
+except ValueError:
+     test_for_num_1 = False
+
+try:
+     float(num_2)
+except ValueError:
+     test_for_num_2 = False
+
 # перевірка на те, чи є числами, чи правильна дія
-if  num_1.isnumeric() and num_2.isnumeric() and (operation == '+' or operation == '-' or operation == '*' or operation == '/'):
+if  test_for_num_1 and test_for_num_2 and (operation == '+' or operation == '-' or operation == '*' or operation == '/'):
+
     num_1 = int(num_1)
     num_2 = int(num_2)
     if num_2 >= 0: # перевірка на знак 2-го числа, щоб красиво прописати дію: з дужками або без
@@ -34,4 +48,4 @@ else:
     if  not(num_1.isnumeric() and num_2.isnumeric()):
         print('помилка: ви ввели не число')
     else:
-        print('помилка: ви ввели не вірну дію')
+        print('помилка: ви ввели невірну дію')
