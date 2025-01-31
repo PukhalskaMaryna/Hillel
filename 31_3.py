@@ -7,3 +7,5 @@ except ValueError:
     print("Помилка: не введено коректно 2 числа")
 except KeyError:
     print("Помилка: неправильна операція")
+
+
