@@ -4,4 +4,4 @@ for index, element in enumerate(lst):
     if index % 2 == 0:
         summ += element
 
-print(0 if lst == [] else summ * lst[-1])
+print(0 if not lst else summ * lst[-1])
