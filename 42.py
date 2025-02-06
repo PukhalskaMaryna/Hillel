@@ -1,6 +1,7 @@
-lst = [0, 0, 0, 0, 1, 0, 't', [1, 2, 0], 12, 3]
-i = 0 # рахує к-ть 0
-while 0 in lst:
-    lst.remove(0)
-    i += 1
-print(lst + [0] * i)
+lst = [0, 1, 7, 2, 4, 8]
+summ = 0
+for index, element in enumerate(lst):
+    if index % 2 == 0:
+        summ += element
+
+print(0 if lst == [] else summ * lst[-1])
