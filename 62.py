@@ -3,7 +3,7 @@ dic = {'d':86400,'h':3600,'m':60}
 
 for i in dic:
     val = seconds // dic[i]
-    seconds = seconds % dic[i]
+    seconds %= dic[i]
     dic.update ({i: val})
 
 dic_day = {
@@ -18,6 +18,7 @@ dic_day = {
     8: "днів",
     9: "днів"
 }
+
 print (f'{dic['d']} {dic_day[dic['d'] % 10]} {str(dic['h']).zfill(2)}:{str(dic['m']).zfill(2)}:{str(seconds).zfill(2)}')
 
 
