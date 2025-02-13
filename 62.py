@@ -2,8 +2,8 @@ seconds = int(input("Введіть число: "))
 dic = {'d':86400,'h':3600,'m':60}
 
 for i in dic:
-    val = seconds // dic[i]
-    seconds %= dic[i]
+    val = seconds // dic.get(i)
+    seconds %= dic.get(i)
     dic.update ({i: val})
 
 dic_day = {
