@@ -1,5 +1,7 @@
 import string
 
-my_str = input("Введіть 2 літери через дефіс: ").replace(' ','')
-print(string.ascii_letters[string.ascii_letters.index(my_str[0]):string.ascii_letters.index(my_str[2]) + 1])
+sym_1,sym_2 = map(ord,input("Введіть 2 літери через дефіс: ").replace(' ','').split("-"))
+for c in string.ascii_letters:
+    if ord(c) in range(sym_1, sym_2+1):
+        print(c,end = '')
 
