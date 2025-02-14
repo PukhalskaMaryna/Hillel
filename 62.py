@@ -19,6 +19,8 @@ dic_day = {
     9: "днів"
 }
 
-print (f'{dic['d']} {dic_day[dic['d'] % 10]} {str(dic['h']).zfill(2)}:{str(dic['m']).zfill(2)}:{str(seconds).zfill(2)}')
+val_day = dic_day[0] if dic["d"] % 100 in [11,12,13,14] else dic_day[dic["d"] % 10]
+d,h,m,s = str(dic["d"]),str(dic["h"]).zfill(2),str(dic["m"]).zfill(2),str(seconds).zfill(2)
+print (f'{d} {val_day} {h}:{m}:{s}')
 
 
