@@ -16,6 +16,7 @@ exception = set()
 
 for game_id,rounds in content.items():
     for round_id in rounds:
+        # прогонка за кольорами, чи є такий, к-ть якого вище за можливу
         if any(content.get(game_id).get(round_id).get(color, 0) > cnt for color,cnt in dic.items()):
             exception.add(game_id)
             break
