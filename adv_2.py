@@ -3,12 +3,22 @@ with open('C:/Users/puhal/Desktop/adventofcode/2.txt', 'r') as file:
         # цикл наповнення словника словників
         int(i.split(":")[0].replace("Game ","")):i.split(":")[-1].strip() for i in file.read().splitlines()
     }
-print(content)
 
-content = {i: {ii : {iii.strip().split(" ")[-1]:int(iii.strip().split(" ")[0]) for iii in content.get(i).split(";")[ii - 1].strip().split(",")} for ii in range(1,len(content.get(i).split(";")))} for i in content}
+content = {game_id:
+               {round_id:
+                    {color.strip().split(" ")[-1]:int(color.strip().split(" ")[0])
+                     for color in content.get(game_id).split(";")[round_id].strip().split(",")}
+                for round_id in range(0,len(content.get(game_id).split(";")))}
+           for game_id in content}
 
-# content = {i: {ii: {iii:iii.strip().split(",") for iii in [content.get(i).split(";")[ii - 1]]} for ii in range(1,len(content.get(i).split(";")))} for i in content}
+dic = {'red' : 12, 'green' : 13, 'blue' : 14}
+exception = set()
 
-print(content.get(1).get(1).get('blue',0))
+for game_id,rounds in content.items():
+    for round_id in rounds:
+        if any(content.get(game_id).get(round_id).get(color, 0) > cnt for color,cnt in dic.items()):
+            exception.add(game_id)
+            break
 
-# content = {i.split(",") for i in content}
+print(sum(i for i in content.keys() if i not in exception))
+
