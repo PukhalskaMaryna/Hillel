@@ -1,13 +1,14 @@
-import string
+with open('C:/Users/puhal/Desktop/adventofcode/2.txt', 'r') as file:
+    content = {
+        # цикл наповнення словника словників
+        int(i.split(":")[0].replace("Game ","")):i.split(":")[-1].strip() for i in file.read().splitlines()
+    }
+print(content)
 
-with open('C:/Users/puhal/Desktop/adventofcode/1.txt', 'r') as file:
-    content = (
-        # цикл наповнення кортежу рядками з 1 і останньої цифри або подвоєння цифри, якщо вона 1 в рядку
-        i[0] + i[-1] for i in (
-            # цикл наповнення кортежу рядками файлу 1.txt в окремі елементи з чисткою букв по краях
-            i.strip(string.ascii_letters) for i in file.read().splitlines()
-        )
-    )
+content = {i: {ii : {iii.strip().split(" ")[-1]:int(iii.strip().split(" ")[0]) for iii in content.get(i).split(";")[ii - 1].strip().split(",")} for ii in range(1,len(content.get(i).split(";")))} for i in content}
 
-print(sum(int(i) for i in content))
-# 54632
+# content = {i: {ii: {iii:iii.strip().split(",") for iii in [content.get(i).split(";")[ii - 1]]} for ii in range(1,len(content.get(i).split(";")))} for i in content}
+
+print(content)
+
+# content = {i.split(",") for i in content}
