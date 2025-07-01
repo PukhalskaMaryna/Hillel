@@ -63,22 +63,104 @@
 
 # наслідування
 
-class Animal:
-    def __init__(self, name = 'Any'):
-        self.name = name
+# class Animal:
+#     def __init__(self, name = 'Any'):
+#         self.name = name
 
-    def make_sound(self):
-        return f'some sound - {self.name}' 
+#     def make_sound(self):
+#         return f'some sound - {self.name}' 
 
-class Dog(Animal):
-    def __init__(self,breed,name = 'Any dog'):
-        super().__init__(name)
-        self.breed = breed
+# class Dog(Animal):
+#     def __init__(self,breed,name = 'Any dog'):
+#         super().__init__(name)
+#         self.breed = breed
 
-    def make_sound(self):
-        return f'{self.name} says GAU! Breed {self.breed}'
+#     def make_sound(self):
+#         return f'{self.name} says GAU! Breed {self.breed}'
     
-d = Dog(breed = 'Mops')
-a = Animal("Bonny")
-print(d.make_sound())
-print(a.make_sound())
+# d = Dog(breed = 'Mops')
+# a = Animal("Bonny")
+# print(d.make_sound())
+# print(a.make_sound())
+
+# from abc import ABC, abstractmethod
+
+# class Shape(ABC):
+
+#     @abstractmethod
+#     def area(self):
+#         pass
+#     # @abstractmethod    
+#     def pm(self):
+#         pass
+
+# class Rectangle(Shape):
+
+#     def __init__(self,width,heigth):
+#         self.width = width
+#         self.heigth = heigth
+
+#     def area(self):
+#         return  self.heigth * self.width   
+
+# r = Rectangle(5,7) 
+# print(r.width)       
+# print(r.area())
+
+# class NotifyUser(ABC):
+#     @abstractmethod
+#     def send_notification(self):
+#         pass
+
+# class EmailNotification:
+#     def __init__(self, smtp_str):
+#         self.smtp_str = smtp_str
+
+#     def smtp_connection(self):
+#         if self.smtp_str:
+#             return True
+#         return False
+
+#     def send_notification(self, user):
+#         configure_smtp = self.smtp_connection
+#         if configure_smtp:
+#             return f'Email sent to {user}'
+
+# class SMSNotification:
+#     def send_notification(self, user):
+#         return f'SMS sent to {user}'
+
+# class InCallNotification:
+#     def send_notification(self, user):
+#         return f'Called the {user}'
+
+# class Notification:
+#     def __init__(self, notif_list):
+#         self.notif_list = notif_list
+
+#     def notify(self, user):
+#         for notif in self.notif_list:
+#             print(notif.send_notification(user))
+    
+# notification_classes = [EmailNotification('smtp'),SMSNotification(),InCallNotification()] 
+
+# notify_handler = Notification(notification_classes)
+# notify_handler.notify('Mary')
+
+
+class Singleton:
+    _instance = None
+
+    def __new__(cls,*args, **kwargs):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+        return  cls._instance   
+    
+    def __init__(self, value):
+        self.value = value
+
+obj1 = Singleton(1)    
+obj2 = Singleton(2)   
+
+print(obj1 is obj2)
+print(obj1.value)
