@@ -1,0 +1,77 @@
+<style>
+    .mb_4 {
+        margin-bottom: 10px;
+    }
+
+    .form-button-group form {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        min-width: 160px;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    input[type="text"] {
+        padding: 10px;
+        font-size: 16px;
+        width: 300px;
+        margin-right: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+</style>
+
+<div>
+    <div class="mb_4">
+        <form action="{{ url_for('add_movie') }}" method="post" class="flex">
+            <input type="text" name="content" placeholder="Введіть назву фільму">
+            <button type="submit">Додати</button>
+        </form>
+    </div>  
+
+    <div class="form-button-group mb_4">
+        <form action="{{ url_for('random_movie') }}" method="get">
+            <button type="submit">Випадковий фільм</button>
+        </form>
+
+        <form action="{{ url_for('clear_all') }}" method="get">
+            <button type="submit">Очистити все</button>
+        </form>
+
+        <form action="{{ url_for('count_movies') }}" method="get">
+            <button type="submit">Кількість фільмів</button>
+        </form>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="p-2 mb-2 text-white {{ 'bg-red-500' if category == 'error' else 'bg-green-500' }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %} 
+    {% endwith %}
+
+    <ul>
+        {% for movie in movies %}
+            <li>
+                <span>{{ movie.content }} ({{ movie.date_created.strftime('%Y-%m-%d %H:%M') }})</span>
+                <a href="{{ url_for('delete_movie', id=movie.id) }}">Видалити</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
